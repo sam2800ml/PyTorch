@@ -14,7 +14,7 @@ Welcome to my GitHub repository! Here, I document everything I learn while worki
 ## Learning Path
 
 ### Phase 1: PyTorch Fundamentals
-I’ll begin with the official [PyTorch Learning Resources](https://pytorch.org/learn/), working through tutorials and examples. This phase is all about understanding the basics and getting hands-on experience with:
+I’ll begin with the official [PyTorch Learning Resources](https://pytorch.org/tutorials/beginner/introyt/introyt_index.html), working through tutorials and examples. This phase is all about understanding the basics and getting hands-on experience with:
 
 - Tensors and operations
 - Building and training models
