@@ -7,6 +7,7 @@ from torch.utils.data import DataLoader
 from torchvision import datasets # When we use the torchvision means that we are going to load a project that uses images
 from torchvision.transforms import ToTensor
 
+
 training_data = datasets.FashionMNIST(
     root="data",
     train=True,
@@ -59,7 +60,7 @@ print(model)
 
 loss_fn = nn.CrossEntropyLoss() # Loss that we are going to use in this model 
 optimizer = torch.optim.SGD(model.parameters(), lr=1e-3) # Optimizer that is going to be use setting the learning rate 
-
+scaler = torch.GradScaler()
 
 def train(data_loader, model, loss_fn, optimizer):
     size = len(data_loader.dataset)
@@ -67,12 +68,15 @@ def train(data_loader, model, loss_fn, optimizer):
     for batch, (X,y) in enumerate(data_loader):
         X, y = X.to(device), y.to(device)
 
-        pred = model(X)
-        loss = loss_fn(pred, y)
-
-        loss.backward()
-        optimizer.step()
-        optimizer.zero_grad()
+        with torch.autocast(device_type="mps", dtype=torch.bfloat16):    
+            pred = model(X)
+            loss = loss_fn(pred, y)
+        scaler.scale(loss).backward()
+        #loss.backward()
+        scaler.scale(optimizer)
+        scaler.update()
+        #optimizer.step()
+        #optimizer.zero_grad()
 
         if batch % 100 == 0:
             loss, current = loss.item(), (batch+1) * len(X)

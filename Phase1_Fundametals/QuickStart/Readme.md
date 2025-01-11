@@ -27,6 +27,4 @@ In this example, we explore how to use PyTorch to load a simple model using the 
 ### Why FashionMNIST?
 FashionMNIST is a great starting point for beginners in PyTorch as it provides a straightforward image classification problem with manageable complexity.
 
-Feel free to check the full implementation in my GitHub repository: [GitHub Link]
-
 Let me know your thoughts or improvements you’d suggest!
