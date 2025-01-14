@@ -1,0 +1,9 @@
+# Ignore zip files
+*.zip
+
+# Ignore dataset files
+data/FashionMNIST/raw/*.idx*
+data/FashionMNIST/raw/*.gz
+
+# Ignore macOS system files
+.DS_Store
